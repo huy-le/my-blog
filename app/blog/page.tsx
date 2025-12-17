@@ -5,28 +5,34 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8">All Posts</h1>
+    <div className="max-w-2xl mx-auto px-6">
+      <div className="mb-16">
+        <h1 className="text-4xl font-bold mb-4 tracking-tight">Writing</h1>
+        <p className="text-zinc-600 dark:text-zinc-400">
+          Thoughts and stories from my journey.
+        </p>
+      </div>
 
       {posts.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">No posts yet. Check back soon!</p>
+        <p className="text-zinc-400">No posts yet. Check back soon!</p>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-12">
           {posts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <article className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <h2 className="text-2xl font-bold mb-2 hover:text-blue-600 transition-colors">
+              <article className="group">
+                <h2 className="text-2xl font-semibold mb-3 tracking-tight group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+                <p className="text-sm text-zinc-400 mb-3">
                   {new Date(post.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
                   })}
-                  {post.author && ` • ${post.author}`}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">{post.excerpt}</p>
+                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {post.excerpt}
+                </p>
               </article>
             </Link>
           ))}
